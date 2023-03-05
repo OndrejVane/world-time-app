@@ -6,4 +6,6 @@ API is used to find out the world time: [WorldTimeAPI](http://worldtimeapi.org/)
 
 ## ScreenShots
 
-:TODO
+![Screen 1](/readme/screen_1.png?raw=true)
+![Screen 2](/readme/screen_2.png?raw=true)
+![Screen 2](/readme/screen_3.png?raw=true)
