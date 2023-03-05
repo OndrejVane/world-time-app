@@ -12,7 +12,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    data = ModalRoute.of(context)!.settings.arguments as Map;
+    data =
+        data.isEmpty ? ModalRoute.of(context)!.settings.arguments as Map : data;
 
     bool isDayTime = data['isDayTime'];
     String bgImage = isDayTime ? "day.jpg" : "night.jpg";
@@ -33,8 +34,19 @@ class _HomeState extends State<Home> {
           children: [
             const SizedBox(height: 100),
             TextButton.icon(
-              onPressed: () {
-                Navigator.pushNamed(context, "/choose_location");
+              onPressed: () async {
+                dynamic result =
+                    await Navigator.pushNamed(context, "/choose_location");
+                if (result != null) {
+                  setState(() {
+                    data = {
+                      'location': result['location'],
+                      'flag': result['flag'],
+                      'time': result['time'],
+                      'isDayTime': result['isDayTime']
+                    };
+                  });
+                }
               },
               icon: Icon(
                 Icons.location_on,

@@ -38,8 +38,15 @@ class _ChooseLocationState extends State<ChooseLocation> {
                 child: Padding(
                   padding: const EdgeInsets.all(3),
                   child: ListTile(
-                    onTap: () {
-                      // TODO: change location
+                    onTap: () async {
+                      WorldTime instance = locations[index];
+                      await instance.getTimeOfLocation();
+                      Navigator.pop(context, {
+                        'location': instance.location,
+                        'flag': instance.flag,
+                        'time': instance.time,
+                        'isDayTime': instance.isDayTime
+                      });
                     },
                     title: Text(locations[index].location),
                     leading: CircleAvatar(
